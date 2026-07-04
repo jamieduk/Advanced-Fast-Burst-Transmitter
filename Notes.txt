@@ -28,7 +28,7 @@ audioburst/
 Key features: multi-tone parallel data lanes (8-64 tones), AES-256-GCM, RSA-4096 hybrid, OTP, Reed-Solomon FEC, CRC32, base64-safe encoding, file/folder transfer, text messaging, 4 TX modes (FAST/BALANCED/ROBUST/STEALTH), session management with reordering.
 
 The default received files directory is received/ (relative), not output/. When run from the project root, that resolves to:
-/home/jay/Documents/Scripts/AI/OpenCode/Super-Fast-Advanced-Burst-Transmitter/received/
+/home/$USER/Documents/Scripts/Python/Super-Fast-Advanced-Burst-Transmitter/received/
 
 The output/ directory is a separate config field (output_dir) for general output, 
 not used by the receive path. You can override it with --output /some/path on the CLI.
