@@ -6,15 +6,6 @@ A modular Python framework designed to implement a high-speed, secure, resilient
 
 The goal of this project is to create a software-defined acoustic packet radio network capable of securely transmitting files, folders and text over standard audio devices using parallel multi-tone modulation, forward error correction and modern cryptography.
 
----
-
-## Project Location
-
-```
-/home/jay/Documents/Scripts/AI/OpenCode/Super-Fast-Advanced-Burst-Transmitter/
-```
-
----
 
 # Project Goals
 
