@@ -1,0 +1,96 @@
+{
+  "audio": {
+    "sample_rate": 48000,
+    "tones": 8,
+    "symbol_rate": 100.0,
+    "symbol_duration": 0.01,
+    "base_freq": 1000.0,
+    "tone_spacing": 600.0,
+    "amplitude": 0.8,
+    "bits_per_tone": 4,
+    "channels": 1,
+    "dtype": "float32"
+  },
+  "packet": {
+    "preamble_length": 64,
+    "sync_pattern": [
+      1,
+      0,
+      1,
+      0,
+      1,
+      1,
+      0,
+      0,
+      1,
+      1,
+      1,
+      0,
+      0,
+      0,
+      1,
+      0
+    ],
+    "max_payload_size": 1024,
+    "session_id_bytes": 4,
+    "seq_id_bytes": 4,
+    "total_packets_bytes": 4,
+    "enc_type_bytes": 1,
+    "payload_length_bytes": 2,
+    "crc_bytes": 4,
+    "end_marker": [
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0
+    ]
+  },
+  "fec": {
+    "enabled": true,
+    "redundancy": 0.2,
+    "rs_n": 255,
+    "rs_k": 223,
+    "interleave_depth": 4
+  },
+  "crypto": {
+    "mode": "public_key",
+    "psk_key_file": "keys/psk.key",
+    "rsa_private_key_file": "keys/private.pem",
+    "rsa_public_key_file": "keys/public.pem",
+    "otp_key_file": "keys/otp.key",
+    "pbkdf2_iterations": 600000,
+    "argon2_memory_cost": 65536,
+    "argon2_time_cost": 3,
+    "argon2_parallelism": 4,
+    "secure_wipe": true
+  },
+  "paths": {
+    "output_dir": "output",
+    "received_dir": "received",
+    "saved_dir": "saved",
+    "keys_dir": "keys",
+    "temp_dir": "temp",
+    "logs_dir": "logs"
+  },
+  "debug": {
+    "enabled": false,
+    "log_level": "INFO",
+    "log_to_file": true,
+    "log_file": "logs/audioburst.log",
+    "dump_raw_audio": false,
+    "dump_packets": false
+  },
+  "tx_mode": "balanced",
+  "rx_mode": "auto",
+  "compression": true,
+  "compression_level": 6,
+  "multiprocessing": true,
+  "max_workers": 4,
+  "save_to_wav": true,
+  "mute_sound": true,
+  "confirm_send": false
+}

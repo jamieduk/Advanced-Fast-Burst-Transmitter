@@ -1,0 +1,64 @@
+[✓] Create directory structure for audioburst/
+[✓] Build config.py - all settings
+[✓] Build utils/ (logger, config_loader, helpers)
+[✓] Build protocol/ (frame, serializer, session)
+[✓] Build crypto/ (aes, rsa, otp, keygen)
+[✓] Build fec/ (reedsolomon, crc)
+[✓] Build modem/ (multitone, demod, sampler)
+[✓] Build tx/ (transmitter, encoder, file_loader)
+[✓] Build rx/ (receiver, decoder, sync)
+[✓] Build main.py - CLI menu system
+[✓] Create changes.txt
+[✓] Verify all imports and basic structure
++ Thought: 256ms
+AudioBurst v3 is built. All 28 files created, all compile cleanly.
+
+
+Structure:
+audioburst/
+├── main.py              # CLI menu + argparse
+├── config.py            # Full config system
+├── tx/                  # transmitter, encoder, file_loader
+├── rx/                  # receiver, decoder, sync
+├── modem/               # multitone, demod, sampler
+├── crypto/              # aes, rsa, otp, keygen
+├── fec/                 # reedsolomon, crc
+├── protocol/            # frame, serializer, session
+└── utils/               # logger, config_loader, helpers
+Key features: multi-tone parallel data lanes (8-64 tones), AES-256-GCM, RSA-4096 hybrid, OTP, Reed-Solomon FEC, CRC32, base64-safe encoding, file/folder transfer, text messaging, 4 TX modes (FAST/BALANCED/ROBUST/STEALTH), session management with reordering.
+
+The default received files directory is received/ (relative), not output/. When run from the project root, that resolves to:
+/home/jay/Documents/Scripts/AI/OpenCode/Super-Fast-Advanced-Burst-Transmitter/received/
+
+The output/ directory is a separate config field (output_dir) for general output, 
+not used by the receive path. You can override it with --output /some/path on the CLI.
+
+WAV file output — Every transmission now builds the full audio signal and saves it as a .wav file in the saved/ directory (configurable via config.paths.saved_dir). Files are named like filename_20260703_120000.wav
+
+Config menu — Two new options added:
+- 12) Save TX to WAV — toggle on/off (default: on)
+- 13) Saved WAV Dir — change output directory
+
+CLI flags — --save-wav / --no-save-wav to override from command line.
+Encryption default — Changed from psk to none. A warning banner now displays before every send
+
+- decode_from_wav(wav_path) — loads a WAV file, auto-syncs to preamble, demodulates, and returns decoded bytes
+- receive_from_wav(wav_path, output_dir) — decodes from WAV and saves the result to the output directory
+Menu: option 5) Receive from WAV File — prompts for a WAV path like saved/test.txt_20260703_211747.wav
+CLI: --receive-wav saved/test.txt_20260703_211747.wav
+
+(both interactive and CLI mode):
+
+*** WARNING: Encryption is DISABLED (mode: none) ***
+*** Data will be transmitted as UNENCRYPTED plaintext! ***
+
+Usage: 
+
+python audioburst/main.py for interactive menu, or use --send, --send-folder, --send-text, --receive, --generate-keys, --list-devices flags.
+
+Install deps: pip install -r requirements.txt
+
+./setup.sh
+
+
+
